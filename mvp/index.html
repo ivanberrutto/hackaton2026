@@ -210,16 +210,16 @@
 
   const projects = [
     // ── ACTIVOS ───────────────────────────────────────────────────────
-    { id:1, title:'Avícola Las Acacias',            location:'Crespo, Entre Ríos',             type:'ganaderia',       status:'activo',     roi:'23%', currency:'Dólares', months:14, funded:78,  investors:104, amount:'215.600', minInv:'USD 500',   img:'pollo1.jpg',          activity:'Pollo',          url:'pollo1.html' },
-    { id:2, title:'Estancia La Soñada',            location:'Venado Tuerto, Santa Fe',        type:'agricultura',     status:'activo',     roi:'21%', currency:'Dólares', months:18, funded:94,  investors:148, amount:'287.500', minInv:'USD 500',   img:'soja1.jpg',           activity:'Soja'            },
-    { id:3, title:'Olivares de la Quebrada',       location:'Aimogasta, La Rioja',            type:'agroindustria',   status:'activo',     roi:'28%', currency:'Dólares', months:20, funded:52,  investors:71,  amount:'142.600', minInv:'USD 1.000', img:'oliva.jpg',           activity:'Oliva'           },
-    { id:4, title:'Establecimiento El Ombú',       location:'Pergamino, Buenos Aires',        type:'agricultura',     status:'activo',     roi:'25%', currency:'Dólares', months:12, funded:67,  investors:89,  amount:'178.900', minInv:'USD 300',   img:'maiz1.jpg',           activity:'Maíz',           url:'maiz1.html' },
+    { id:1, title:'Avícola Las Acacias',            location:'Crespo, Entre Ríos',             type:'ganaderia',       status:'activo',     roi:'17%', currency:'Dólares', months:14, funded:78,  investors:104, amount:'215.600', minInv:'USD 500',   img:'pollo1.jpg',          activity:'Pollo',          url:'pollo1.html' },
+    { id:2, title:'Estancia La Soñada',            location:'Venado Tuerto, Santa Fe',        type:'agricultura',     status:'activo',     roi:'15%', currency:'Dólares', months:18, funded:94,  investors:148, amount:'287.500', minInv:'USD 500',   img:'soja1.jpg',           activity:'Soja'            },
+    { id:3, title:'Olivares de la Quebrada',       location:'Aimogasta, La Rioja',            type:'agroindustria',   status:'activo',     roi:'18%', currency:'Dólares', months:20, funded:52,  investors:71,  amount:'142.600', minInv:'USD 1.000', img:'oliva.jpg',           activity:'Oliva'           },
+    { id:4, title:'Establecimiento El Ombú',       location:'Pergamino, Buenos Aires',        type:'agricultura',     status:'activo',     roi:'16%', currency:'Dólares', months:12, funded:67,  investors:89,  amount:'178.900', minInv:'USD 300',   img:'maiz1.jpg',           activity:'Maíz',           url:'maiz1.html' },
     // ── EN PROCESO ────────────────────────────────────────────────────
-    { id:5, title:'Tambo La Unión',                location:'Rafaela, Santa Fe',               type:'ganaderia',       status:'en proceso', roi:'20%', currency:'Dólares', months:24, funded:100, investors:134, amount:'289.300', img:'tambo.jpg',           activity:'Tambo'           },
-    { id:6, title:'Bodega Finca Los Andes',        location:'Luján de Cuyo, Mendoza',          type:'vitivinicultura', status:'en proceso', roi:'30%', currency:'Dólares', months:24, funded:100, investors:97,  amount:'310.500', img:'vitivinicultura1.jpg', activity:'Vitivinicultura' },
+    { id:5, title:'Tambo La Unión',                location:'Rafaela, Santa Fe',               type:'ganaderia',       status:'en proceso', roi:'13%', currency:'Dólares', months:24, funded:100, investors:134, amount:'289.300', img:'tambo.jpg',           activity:'Tambo'           },
+    { id:6, title:'Bodega Finca Los Andes',        location:'Luján de Cuyo, Mendoza',          type:'vitivinicultura', status:'en proceso', roi:'22%', currency:'Dólares', months:24, funded:100, investors:97,  amount:'310.500', img:'vitivinicultura1.jpg', activity:'Vitivinicultura' },
     // ── FINALIZADOS ───────────────────────────────────────────────────
-    { id:7, title:'Agropecuaria Don Ernesto',      location:'Junín, Buenos Aires',             type:'agricultura',     status:'finalizado', roi:'27%', currency:'Dólares', months:12, funded:100, investors:212, amount:'415.200', img:'soja2.jpg',           activity:'Soja'            },
-    { id:8, title:'Granja San Miguel',             location:'Concepción del Uruguay, E. Ríos', type:'ganaderia',       status:'finalizado', roi:'22%', currency:'Dólares', months:18, funded:100, investors:156, amount:'325.800', img:'pollo2.jpg',          activity:'Pollo'           },
+    { id:7, title:'Agropecuaria Don Ernesto',      location:'Junín, Buenos Aires',             type:'agricultura',     status:'finalizado', roi:'19%', currency:'Dólares', months:12, funded:100, investors:212, amount:'415.200', img:'soja2.jpg',           activity:'Soja'            },
+    { id:8, title:'Granja San Miguel',             location:'Concepción del Uruguay, E. Ríos', type:'ganaderia',       status:'finalizado', roi:'16%', currency:'Dólares', months:18, funded:100, investors:156, amount:'325.800', img:'pollo2.jpg',          activity:'Pollo'           },
   ];
 
   let currentType = 'todos';
@@ -302,7 +302,7 @@
           <p class="text-gray-500 text-xs">Rentabilidad total estimada · <span class="font-semibold text-gray-700">${p.currency}</span></p>
         </div>
         <div class="space-y-1.5 mb-3">
-          ${isOpen ? `<p class="text-xs text-orange-500 font-semibold text-center">${p.status==='nuevo'?'✨ Recién lanzado — primeros cupos':'🔥 Últimos cupos disponibles'}</p>` : ''}
+          ${isOpen ? `<p class="text-xs text-orange-500 font-semibold text-center">${p.status==='nuevo'?'✨ Recién lanzado — primeras entradas':'🔥 Últimas oportunidades disponibles'}</p>` : ''}
           ${isEnProceso ? `<p class="text-xs text-yellow-600 font-semibold text-center">⏳ Proyecto en ejecución</p>` : ''}
           <div class="relative h-3 bg-gray-200 rounded-full overflow-hidden">
             <div class="absolute inset-y-0 left-0 ${progressClass} rounded-full" style="width:${p.funded}%"></div>
