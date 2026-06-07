@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyectos Agroinversión | CumpleAgro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --green: #2d7d32; --green-dark: #1b5e20; --green-light: #90EE90; }
+    .hero-bg { background: linear-gradient(160deg, #071a09 0%, #14401a 40%, #1e6128 75%, #2d7d32 100%); }
+    @keyframes shine{from{transform:translateX(-100%)}to{transform:translateX(300%)}}
+    .animate-shine{animation:shine 2s ease-in-out infinite}
+    .progress-hot{background:linear-gradient(to left,#ef4444,#f97316)}
+    .progress-new{background:linear-gradient(to left,#3b82f6,#06b6d4)}
+    .progress-done{background:linear-gradient(to left,#22c55e,#4ade80)}
+    .progress-process{background:linear-gradient(to left,#f59e0b,#fbbf24)}
+    .active-filter{background:var(--green)!important;border-color:var(--green)!important;color:white!important}
+    .filter-btn{cursor:pointer}
+    .card{transition:transform .2s,box-shadow .2s}
+    .card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.15)}
+    .fcat.sel{background:#f0fdf4;border-color:#2d7d32;color:#14532d}
+    .fcat.sel .fcat-icon{background:#dcfce7}
+    /* Dots */
+    .dot{width:8px;height:8px;border-radius:9999px;background:rgba(255,255,255,.35);cursor:pointer;transition:background .3s,width .3s}
+    .dot.active{background:white;width:24px}
+    /* Nav second row separator */
+    .nav-link-d{position:relative;padding-bottom:2px}
+    .nav-link-d::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:2px;background:#90EE90;transition:left .25s,right .25s}
+    .nav-link-d:hover::after{left:0;right:0}
+  </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+  <!-- MENÚ MÓVIL -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-green-950 flex flex-col p-6 pt-6 overflow-y-auto">
+    <div class="flex justify-between items-center mb-8">
+      <a href="home.html" class="flex items-center gap-2">
+        <img src="logo-cumpleagro.png" alt="CumpleAgro" class="w-9 h-9 rounded-full">
+        <span class="font-bold text-lg text-white">AGrow</span>
+      </a>
+      <button onclick="toggleMenu()" class="text-white/70 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <a href="#proyectos" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Proyectos Disponibles</a>
+    <a href="ayudaInversiones.html" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Ayuda Inversiones</a>
+    <a href="#" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Historial</a>
+    <div class="mt-8 flex flex-col gap-3">
+      <a href="#" class="bg-green-400 text-green-950 rounded-xl px-4 py-3 text-center font-semibold">Ver mis Inversiones</a>
+      <a href="#" class="border border-green-400 text-green-200 rounded-xl px-4 py-3 text-center font-medium flex items-center justify-center gap-2">
+        Bienvenido Valentino
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══ NAV: barra sólida, dos filas ═══ -->
+  <header class="fixed top-0 inset-x-0 z-40 bg-green-950 shadow-lg">
+    <!-- Fila 1: logo + botones de usuario -->
+    <div class="flex items-center justify-between px-4 lg:px-10 xl:px-20 h-14 border-b border-green-800/60">
+      <!-- Logo -->
+      <a href="home.html" class="flex items-center gap-2.5">
+        <img src="logo-cumpleagro.png" alt="CumpleAgro" class="w-9 h-9 rounded-full">
+        <div class="hidden sm:block">
+          <p class="font-bold text-white leading-none text-base">AGrow</p>
+          <p class="text-green-400 text-[10px] leading-none mt-0.5 font-medium tracking-wide">INVERTÍ EN EL CAMPO</p>
+        </div>
+      </a>
+      <!-- Desktop: botones de cuenta -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="#" class="bg-green-400 text-green-950 rounded-lg px-4 py-1.5 text-sm font-bold hover:bg-green-300 transition-colors whitespace-nowrap shadow">Ver mis Inversiones</a>
+        <div class="relative group">
+          <button class="border border-green-500 text-green-200 rounded-lg px-4 py-1.5 text-sm font-medium hover:bg-green-800 transition-colors flex items-center gap-1.5 whitespace-nowrap">
+            Bienvenido Valentino
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 transition-transform group-hover:rotate-180 flex-shrink-0"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg>
+          </button>
+          <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-white rounded-xl shadow-xl p-2 min-w-[200px] border border-green-100 z-50">
+            <div class="px-3 py-2 border-b border-gray-100 mb-1">
+              <p class="text-xs text-gray-400">Cuenta activa</p>
+              <p class="text-sm font-semibold text-green-800">Valentino García</p>
+            </div>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Mi perfil</a>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Mis inversiones</a>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Documentos</a>
+            <a href="#" class="block px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg border-t border-gray-100 mt-1">Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile hamburger -->
+      <button onclick="toggleMenu()" class="flex lg:hidden text-green-300 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <!-- Fila 2: nav links centrados (solo desktop) -->
+    <div class="hidden lg:flex justify-center items-center gap-10 h-10 bg-green-900/50">
+      <a href="#proyectos" class="nav-link-d text-green-200 hover:text-white text-sm font-medium transition-colors">Proyectos Disponibles</a>
+      <a href="ayudaInversiones.html" class="nav-link-d text-green-200 hover:text-white text-sm font-medium transition-colors">Ayuda Inversiones</a>
+      <a href="#" class="nav-link-d text-green-200 hover:text-white text-sm font-medium transition-colors">Historial</a>
+    </div>
+  </header>
+
+  <!-- ═══ CABECERA DE PÁGINA ═══ -->
+  <section class="pt-24 hero-bg relative overflow-hidden">
+    <div class="container mx-auto px-4 py-6 relative z-10 flex items-center justify-between">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <a href="home.html" class="text-green-300 hover:text-green-200 text-sm flex items-center gap-1 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Inicio
+          </a>
+          <span class="text-white/30 text-sm">/</span>
+          <span class="text-white/60 text-sm">Proyectos</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-bold text-white">Proyectos Disponibles</h1>
+        <p class="text-white/60 text-sm mt-1">8 proyectos · 4 activos · 2 en proceso · 2 finalizados</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FILTROS: sección propia con íconos grandes ═══ -->
+  <section id="proyectos" class="bg-white border-y border-gray-100 shadow-sm">
+    <div class="container mx-auto px-4 py-6">
+      <p class="text-xs font-bold text-gray-400 uppercase tracking-widest text-center mb-4">Explorá por categoría</p>
+      <!-- Categorías con ícono -->
+      <div class="flex flex-wrap justify-center gap-3 mb-5">
+        <button onclick="setFilter('todos')" id="f-todos" class="fcat sel filter-btn flex items-center gap-2.5 border-2 border-gray-200 rounded-2xl px-4 py-2.5 text-sm font-semibold text-gray-600 hover:border-green-700 hover:text-green-800 transition-all">
+          <span class="fcat-icon w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center text-base transition-colors">🌎</span> Todos
+        </button>
+        <button onclick="setFilter('agricultura')" id="f-agricultura" class="fcat filter-btn flex items-center gap-2.5 border-2 border-gray-200 rounded-2xl px-4 py-2.5 text-sm font-semibold text-gray-600 hover:border-green-700 hover:text-green-800 transition-all">
+          <span class="fcat-icon w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center text-base transition-colors">🌾</span> Agricultura
+        </button>
+        <button onclick="setFilter('ganaderia')" id="f-ganaderia" class="fcat filter-btn flex items-center gap-2.5 border-2 border-gray-200 rounded-2xl px-4 py-2.5 text-sm font-semibold text-gray-600 hover:border-green-700 hover:text-green-800 transition-all">
+          <span class="fcat-icon w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center text-base transition-colors">🐄</span> Ganadería
+        </button>
+        <button onclick="setFilter('vitivinicultura')" id="f-vitivinicultura" class="fcat filter-btn flex items-center gap-2.5 border-2 border-gray-200 rounded-2xl px-4 py-2.5 text-sm font-semibold text-gray-600 hover:border-green-700 hover:text-green-800 transition-all">
+          <span class="fcat-icon w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center text-base transition-colors">🍇</span> Vitivinicultura
+        </button>
+        <button onclick="setFilter('agroindustria')" id="f-agroindustria" class="fcat filter-btn flex items-center gap-2.5 border-2 border-gray-200 rounded-2xl px-4 py-2.5 text-sm font-semibold text-gray-600 hover:border-green-700 hover:text-green-800 transition-all">
+          <span class="fcat-icon w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center text-base transition-colors">🏭</span> Agroindustria
+        </button>
+      </div>
+      <!-- Estado: chips pequeños alineados a la derecha del bloque -->
+      <div class="flex justify-center items-center gap-2 pt-2 border-t border-gray-100">
+        <span class="text-xs text-gray-400 font-semibold uppercase tracking-wider mr-1">Estado</span>
+        <button onclick="setStatus('todos')" id="s-todos" class="filter-btn active-filter px-3 py-1 rounded-full text-xs font-semibold border-2 transition-all">Todos</button>
+        <button onclick="setStatus('abierto')" id="s-abierto" class="filter-btn px-3 py-1 rounded-full text-xs font-semibold border-2 border-gray-200 text-gray-500 hover:border-green-700 hover:text-green-700 transition-all">Abiertos</button>
+        <button onclick="setStatus('enproceso')" id="s-enproceso" class="filter-btn px-3 py-1 rounded-full text-xs font-semibold border-2 border-gray-200 text-gray-500 hover:border-yellow-600 hover:text-yellow-700 transition-all">En Proceso</button>
+        <button onclick="setStatus('finalizado')" id="s-finalizado" class="filter-btn px-3 py-1 rounded-full text-xs font-semibold border-2 border-gray-200 text-gray-500 hover:border-green-700 hover:text-green-700 transition-all">Finalizados</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRILLA -->
+  <main class="container mx-auto px-4 py-10">
+    <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-green-950 text-green-100 mt-12">
+    <div class="container mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <p class="font-bold text-white mb-4">Empresa</p>
+        <ul class="space-y-2 text-sm text-green-300">
+          <li><a href="#" class="hover:text-white transition-colors">Sobre CumpleAgro</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Nuestros Beneficios</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Canales asociados</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-4">Legal</p>
+        <ul class="space-y-2 text-sm text-green-300">
+          <li><a href="#" class="hover:text-white transition-colors">Preguntas frecuentes</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Transparencia</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Términos y condiciones</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Políticas de privacidad</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-4">Accesos</p>
+        <ul class="space-y-2 text-sm text-green-300">
+          <li><a href="#proyectos" class="hover:text-white transition-colors">Proyectos Disponibles</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Ayuda Inversiones</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Historial</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Contactos</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-4">Contacto</p>
+        <p class="text-sm text-green-300 mb-1">Lunes a viernes de 10 a 18 hs</p>
+        <p class="text-sm text-green-300">+54 11 2390-2002</p>
+      </div>
+    </div>
+    <div class="border-t border-green-800 py-6">
+      <div class="container mx-auto px-4">
+        <p class="text-center text-xs text-green-400 mb-3">© 2026 CumpleAgro. Todos los derechos reservados.</p>
+        <p class="text-center text-xs text-green-600 max-w-3xl mx-auto leading-relaxed">
+          LOS PROYECTOS AGROINDUSTRIALES QUE OFRECE CUMPLEAGRO NO SON CONSIDERADOS TÍTULOS NI VALORES NEGOCIABLES. LA RENTABILIDAD INDICADA ES ESTIMADA Y NO GARANTIZADA. INVERTIR IMPLICA RIESGOS.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  const ICON_SVG = `<svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="13" fill="#2d7d32"/><path d="M13 4 C9 8 7 12 9.5 17 C11 13.5 12 11.5 13 10.5 C14 11.5 15 13.5 16.5 17 C19 12 17 8 13 4Z" fill="#90EE90"/><line x1="13" y1="10" x2="13" y2="21" stroke="#90EE90" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+  const PIN = `<svg class="w-3 h-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`;
+
+  const TYPE_BADGE = { agricultura:'bg-green-700/80', ganaderia:'bg-amber-700/80', vitivinicultura:'bg-purple-700/80', agroindustria:'bg-slate-600/80' };
+  const TYPE_LABEL = { agricultura:'Agricultura', ganaderia:'Ganadería', vitivinicultura:'Vitivinicultura', agroindustria:'Agroindustria' };
+
+  const projects = [
+    // ── ACTIVOS ───────────────────────────────────────────────────────
+    { id:1, title:'Avícola Las Acacias',            location:'Crespo, Entre Ríos',             type:'ganaderia',       status:'activo',     roi:'23%', currency:'Dólares', months:14, funded:78,  investors:104, amount:'215.600', minInv:'USD 500',   img:'pollo1.jpg',          activity:'Pollo',          url:'pollo1.html' },
+    { id:2, title:'Estancia La Soñada',            location:'Venado Tuerto, Santa Fe',        type:'agricultura',     status:'activo',     roi:'21%', currency:'Dólares', months:18, funded:94,  investors:148, amount:'287.500', minInv:'USD 500',   img:'soja1.jpg',           activity:'Soja'            },
+    { id:3, title:'Olivares de la Quebrada',       location:'Aimogasta, La Rioja',            type:'agroindustria',   status:'activo',     roi:'28%', currency:'Dólares', months:20, funded:52,  investors:71,  amount:'142.600', minInv:'USD 1.000', img:'oliva.jpg',           activity:'Oliva'           },
+    { id:4, title:'Establecimiento El Ombú',       location:'Pergamino, Buenos Aires',        type:'agricultura',     status:'activo',     roi:'25%', currency:'Dólares', months:12, funded:67,  investors:89,  amount:'178.900', minInv:'USD 300',   img:'maiz1.jpg',           activity:'Maíz',           url:'maiz1.html' },
+    // ── EN PROCESO ────────────────────────────────────────────────────
+    { id:5, title:'Tambo La Unión',                location:'Rafaela, Santa Fe',               type:'ganaderia',       status:'en proceso', roi:'20%', currency:'Dólares', months:24, funded:100, investors:134, amount:'289.300', img:'tambo.jpg',           activity:'Tambo'           },
+    { id:6, title:'Bodega Finca Los Andes',        location:'Luján de Cuyo, Mendoza',          type:'vitivinicultura', status:'en proceso', roi:'30%', currency:'Dólares', months:24, funded:100, investors:97,  amount:'310.500', img:'vitivinicultura1.jpg', activity:'Vitivinicultura' },
+    // ── FINALIZADOS ───────────────────────────────────────────────────
+    { id:7, title:'Agropecuaria Don Ernesto',      location:'Junín, Buenos Aires',             type:'agricultura',     status:'finalizado', roi:'27%', currency:'Dólares', months:12, funded:100, investors:212, amount:'415.200', img:'soja2.jpg',           activity:'Soja'            },
+    { id:8, title:'Granja San Miguel',             location:'Concepción del Uruguay, E. Ríos', type:'ganaderia',       status:'finalizado', roi:'22%', currency:'Dólares', months:18, funded:100, investors:156, amount:'325.800', img:'pollo2.jpg',          activity:'Pollo'           },
+  ];
+
+  let currentType = 'todos';
+  let currentStatus = 'todos';
+
+  function setFilter(type) {
+    currentType = type;
+    ['todos','agricultura','ganaderia','vitivinicultura','agroindustria'].forEach(t => {
+      const b = document.getElementById('f-'+t);
+      if (!b) return;
+      b.classList.toggle('sel', t === type);
+      b.classList.toggle('text-gray-600', t !== type);
+      b.classList.toggle('border-gray-200', t !== type);
+      b.classList.toggle('border-green-700', t === type);
+    });
+    applyFilters();
+  }
+
+  function setStatus(s) {
+    currentStatus = s;
+    ['todos','abierto','enproceso','finalizado'].forEach(t => {
+      const b = document.getElementById('s-'+t);
+      if (!b) return;
+      b.classList.toggle('active-filter', t === s);
+      b.classList.toggle('text-gray-500', t !== s);
+    });
+    applyFilters();
+  }
+
+  function applyFilters() {
+    let list = projects;
+    if (currentType !== 'todos') list = list.filter(p => p.type === currentType);
+    if (currentStatus === 'abierto')   list = list.filter(p => p.status === 'activo' || p.status === 'nuevo');
+    if (currentStatus === 'enproceso') list = list.filter(p => p.status === 'en proceso');
+    if (currentStatus === 'finalizado') list = list.filter(p => p.status === 'finalizado');
+    renderProjects(list);
+  }
+
+  function makeCard(p) {
+    const bgImg = `<img src="imagenes agros/${p.img}" class="absolute inset-0 w-full h-full object-cover">`;
+    const typeBadge = TYPE_BADGE[p.type] || 'bg-green-700/80';
+    const typeLabel = TYPE_LABEL[p.type] || p.type;
+    const isOpen = p.status === 'activo' || p.status === 'nuevo';
+    const isEnProceso = p.status === 'en proceso';
+
+    let statusBadge;
+    if (p.status === 'activo')          statusBadge = `<span class="bg-amber-500 text-white text-xs font-semibold rounded-full px-2.5 py-1">🔥 Activo</span>`;
+    else if (p.status === 'nuevo')      statusBadge = `<span class="bg-blue-500 text-white text-xs font-semibold rounded-full px-2.5 py-1">✨ Nuevo</span>`;
+    else if (p.status === 'en proceso') statusBadge = `<span class="bg-yellow-600 text-white text-xs font-semibold rounded-full px-2.5 py-1">⏳ En Proceso</span>`;
+    else                                statusBadge = `<span class="bg-gray-500/80 text-white text-xs font-semibold rounded-full px-2.5 py-1">Finalizado</span>`;
+
+    let progressClass = 'progress-done';
+    if (p.status === 'activo')     progressClass = 'progress-hot';
+    if (p.status === 'nuevo')      progressClass = 'progress-new';
+    if (p.status === 'en proceso') progressClass = 'progress-process';
+
+    return `
+    <div class="card rounded-2xl overflow-hidden shadow-lg bg-white" data-type="${p.type}">
+      <a href="#" class="relative block h-56 overflow-hidden">
+        ${bgImg}
+        <div class="absolute inset-0 bg-gradient-to-t from-green-950/90 via-transparent to-transparent z-10"></div>
+        <div class="absolute top-2 inset-x-2 flex justify-between z-20">
+          <span class="${typeBadge} backdrop-blur-sm text-white text-xs font-semibold rounded-full px-2.5 py-1">${typeLabel}</span>
+          ${statusBadge}
+        </div>
+        <div class="absolute bottom-0 inset-x-0 px-4 pb-4 z-20 flex items-end gap-3">
+          <div class="w-10 h-10 rounded-xl bg-white shadow-lg flex items-center justify-center flex-shrink-0">${ICON_SVG}</div>
+          <div class="flex-1 flex items-end justify-between gap-2">
+            <div>
+              <h3 class="text-base font-bold text-white leading-tight">${p.title}</h3>
+              <p class="text-green-300 text-xs">${PIN} ${p.location}</p>
+            </div>
+            <span class="text-white/90 text-xs font-bold bg-black/30 backdrop-blur-sm rounded-full px-2.5 py-1 whitespace-nowrap">${p.activity}</span>
+          </div>
+        </div>
+      </a>
+      <div class="p-5">
+        <div class="text-center mb-4">
+          <p class="text-4xl font-bold text-green-700 mb-1">${p.roi}</p>
+          <p class="text-gray-500 text-xs">Rentabilidad total estimada · <span class="font-semibold text-gray-700">${p.currency}</span></p>
+        </div>
+        <div class="space-y-1.5 mb-3">
+          ${isOpen ? `<p class="text-xs text-orange-500 font-semibold text-center">${p.status==='nuevo'?'✨ Recién lanzado — primeros cupos':'🔥 Últimos cupos disponibles'}</p>` : ''}
+          ${isEnProceso ? `<p class="text-xs text-yellow-600 font-semibold text-center">⏳ Proyecto en ejecución</p>` : ''}
+          <div class="relative h-3 bg-gray-200 rounded-full overflow-hidden">
+            <div class="absolute inset-y-0 left-0 ${progressClass} rounded-full" style="width:${p.funded}%"></div>
+            ${isOpen ? `<span class="absolute inset-y-0 left-0 bg-white/40 w-[35%] rounded-full animate-shine"></span>` : ''}
+          </div>
+          <p class="text-right text-xs font-semibold text-gray-500">${p.funded}% fondeado</p>
+        </div>
+        <div class="flex justify-between border-t pt-3 mb-4 text-center">
+          <div><p class="text-base font-bold text-green-800">${p.investors ?? '—'}</p><p class="text-xs text-gray-400">Inversores</p></div>
+          <div><p class="text-base font-bold text-green-800">${p.months} meses</p><p class="text-xs text-gray-400">Plazo</p></div>
+          ${isOpen
+            ? `<div><p class="text-sm font-bold text-green-800">Desde ${p.minInv}</p><p class="text-xs text-gray-400">Mínimo</p></div>`
+            : `<div><p class="text-base font-bold text-green-800">${p.amount}</p><p class="text-xs text-gray-400">${p.currency}</p></div>`
+          }
+        </div>
+        <div class="flex gap-2">
+          <a href="${p.url || '#'}" class="flex-1 py-2 rounded-xl border-2 border-green-700 text-green-700 text-sm font-semibold hover:bg-green-50 transition-colors text-center">Más info</a>
+          ${isOpen ? `<button class="flex-1 py-2 rounded-xl bg-green-700 text-white text-sm font-semibold hover:bg-green-800 transition-colors">Invertir Ahora</button>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  function renderProjects(list) {
+    document.getElementById('grid').innerHTML = list.map(makeCard).join('');
+  }
+
+  renderProjects(projects);
+
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -oP 'class=\"[^\"]{1,100}\"')",
+      "Bash(grep -oP 'text-6xl font-bold[^<]*<[^>]*>[^<]{1,60}' \"/home/igberrutto/Desktop/carpeta para claude/inspiration.html\")",
+      "Bash(python3 *)"
+    ]
+  }
+}

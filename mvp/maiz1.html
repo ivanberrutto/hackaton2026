@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Establecimiento El Ombú | CumpleAgro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --green: #2d7d32; }
+    .hero-bg { background: linear-gradient(160deg, #071a09 0%, #14401a 40%, #1e6128 75%, #2d7d32 100%); }
+    .nav-link-d{position:relative;padding-bottom:2px}
+    .nav-link-d::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:2px;background:#90EE90;transition:left .25s,right .25s}
+    .nav-link-d:hover::after{left:0;right:0}
+    .scard{background:white;border-radius:1rem;box-shadow:0 2px 16px rgba(0,0,0,.07);padding:1.5rem}
+  </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+  <!-- MENÚ MÓVIL -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-green-950 flex flex-col p-6 pt-6 overflow-y-auto">
+    <div class="flex justify-between items-center mb-8">
+      <a href="home.html" class="flex items-center gap-2">
+        <img src="logo-cumpleagro.png" alt="CumpleAgro" class="w-9 h-9 rounded-full">
+        <span class="font-bold text-lg text-white">AGrow</span>
+      </a>
+      <button onclick="toggleMenu()" class="text-white/70 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <a href="index.html" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Proyectos Disponibles</a>
+    <a href="ayudaInversiones.html" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Ayuda Inversiones</a>
+    <a href="#" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Historial</a>
+    <div class="mt-8 flex flex-col gap-3">
+      <a href="#" class="bg-green-400 text-green-950 rounded-xl px-4 py-3 text-center font-semibold">Ver mis Inversiones</a>
+      <a href="#" class="border border-green-400 text-green-200 rounded-xl px-4 py-3 text-center font-medium flex items-center justify-center gap-2">
+        Bienvenido Valentino
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="fixed top-0 inset-x-0 z-40 bg-green-950 shadow-lg">
+    <div class="flex items-center justify-between px-4 lg:px-10 xl:px-20 h-14 border-b border-green-800/60">
+      <a href="home.html" class="flex items-center gap-2.5">
+        <img src="logo-cumpleagro.png" alt="CumpleAgro" class="w-9 h-9 rounded-full">
+        <div class="hidden sm:block">
+          <p class="font-bold text-white leading-none text-base">AGrow</p>
+          <p class="text-green-400 text-[10px] leading-none mt-0.5 font-medium tracking-wide">INVERTÍ EN EL CAMPO</p>
+        </div>
+      </a>
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="#" class="bg-green-400 text-green-950 rounded-lg px-4 py-1.5 text-sm font-bold hover:bg-green-300 transition-colors shadow">Ver mis Inversiones</a>
+        <div class="relative group">
+          <button class="border border-green-500 text-green-200 rounded-lg px-4 py-1.5 text-sm font-medium hover:bg-green-800 transition-colors flex items-center gap-1.5">
+            Bienvenido Valentino
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 transition-transform group-hover:rotate-180"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg>
+          </button>
+          <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-white rounded-xl shadow-xl p-2 min-w-[200px] border border-green-100 z-50">
+            <div class="px-3 py-2 border-b border-gray-100 mb-1">
+              <p class="text-xs text-gray-400">Cuenta activa</p>
+              <p class="text-sm font-semibold text-green-800">Valentino García</p>
+            </div>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Mi perfil</a>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Mis inversiones</a>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Documentos</a>
+            <a href="#" class="block px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg border-t border-gray-100 mt-1">Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+      <button onclick="toggleMenu()" class="flex lg:hidden text-green-300 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="hidden lg:flex justify-center items-center gap-10 h-10 bg-green-900/50">
+      <a href="index.html" class="nav-link-d text-green-200 hover:text-white text-sm font-medium transition-colors">Proyectos Disponibles</a>
+      <a href="ayudaInversiones.html" class="nav-link-d text-green-200 hover:text-white text-sm font-medium transition-colors">Ayuda Inversiones</a>
+      <a href="#" class="nav-link-d text-green-200 hover:text-white text-sm font-medium transition-colors">Historial</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="pt-24 relative overflow-hidden h-72 sm:h-96">
+    <img src="imagenes agros/maiz1.jpg" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-green-950 via-green-950/60 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-green-950/40 to-transparent"></div>
+    <div class="relative z-10 h-full container mx-auto px-4 flex flex-col justify-end pb-8">
+      <div class="flex items-center gap-2 mb-3">
+        <a href="index.html" class="text-green-300 hover:text-green-200 text-sm flex items-center gap-1 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          Proyectos
+        </a>
+        <span class="text-white/30 text-sm">/</span>
+        <span class="text-white/60 text-sm">Establecimiento El Ombú</span>
+      </div>
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="bg-green-700/80 backdrop-blur-sm text-white text-xs font-semibold rounded-full px-3 py-1">Agricultura</span>
+            <span class="bg-amber-500 text-white text-xs font-semibold rounded-full px-3 py-1">🔥 Activo</span>
+            <span class="bg-black/30 backdrop-blur-sm text-white/90 text-xs font-bold rounded-full px-3 py-1">Maíz</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Establecimiento El Ombú</h1>
+          <p class="text-green-300 mt-1 text-sm flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Pergamino, Buenos Aires
+          </p>
+        </div>
+        <a href="index.html" class="bg-green-400 text-green-950 font-bold rounded-xl px-6 py-2.5 text-sm hover:bg-green-300 transition-colors shadow-lg whitespace-nowrap">
+          Invertir Ahora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FICHA RÁPIDA -->
+  <section class="bg-white border-b border-gray-100 shadow-sm">
+    <div class="container mx-auto px-4 py-5">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 divide-x divide-gray-100">
+        <div class="text-center px-4">
+          <p class="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-1">Actividad</p>
+          <p class="font-bold text-green-800 text-sm">Producción y exportación de maíz</p>
+        </div>
+        <div class="text-center px-4">
+          <p class="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-1">Fundación</p>
+          <p class="font-bold text-green-800 text-sm">1996</p>
+        </div>
+        <div class="text-center px-4">
+          <p class="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-1">Representante</p>
+          <p class="font-bold text-green-800 text-sm">Alejandro Fernández</p>
+        </div>
+        <div class="text-center px-4">
+          <p class="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-1">Tipo</p>
+          <p class="font-bold text-green-800 text-sm">Producción extensiva exportadora</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="container mx-auto px-4 py-10 space-y-8 max-w-5xl">
+
+    <!-- Descripción -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">📋</span>
+        Descripción
+      </h2>
+      <p class="text-gray-600 leading-relaxed mb-3">
+        Establecimiento El Ombú es una empresa agropecuaria especializada en la producción de maíz para mercados internacionales. Opera en la zona núcleo agrícola argentina, aprovechando las condiciones productivas del norte de la provincia de Buenos Aires.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-3">
+        La compañía produce maíz de alta calidad destinado principalmente a la cadena exportadora, comercializando su producción a través de acopiadores, exportadoras y contratos directos con operadores del comercio exterior.
+      </p>
+      <p class="text-gray-600 leading-relaxed">
+        Durante los últimos años ha incorporado herramientas de agricultura de precisión para optimizar rendimientos y mejorar la trazabilidad de la producción.
+      </p>
+    </div>
+
+    <!-- Escala productiva -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-5 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">📊</span>
+        Escala productiva
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-3xl font-black text-green-700">4.800</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Hectáreas operadas</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-3xl font-black text-green-700">3.200</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Ha destinadas a maíz</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-3xl font-black text-green-700">32k</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Toneladas / año</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100 sm:col-span-3 sm:max-w-xs sm:mx-auto w-full">
+          <p class="text-3xl font-black text-green-700">10 t/ha</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Rendimiento histórico promedio</p>
+        </div>
+      </div>
+      <p class="text-xs text-gray-400 mt-4 bg-gray-50 rounded-xl p-3">Superficie complementaria destinada a soja y cultivos de cobertura.</p>
+    </div>
+
+    <!-- Perfil exportador -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-5 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center text-base">🌍</span>
+        Perfil exportador
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2 text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              Más del <strong class="text-green-800">85%</strong> de la producción se destina a exportación
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              Participación continua en mercados internacionales desde 2012
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              Operación mediante contratos con empresas exportadoras
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              Producción orientada a estándares de calidad internacional
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-3">Principales destinos</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-blue-50 border border-blue-200 text-blue-800 text-sm font-semibold rounded-full px-4 py-1.5">🇻🇳 Vietnam</span>
+            <span class="bg-blue-50 border border-blue-200 text-blue-800 text-sm font-semibold rounded-full px-4 py-1.5">🇵🇪 Perú</span>
+            <span class="bg-blue-50 border border-blue-200 text-blue-800 text-sm font-semibold rounded-full px-4 py-1.5">🇩🇿 Algeria</span>
+            <span class="bg-blue-50 border border-blue-200 text-blue-800 text-sm font-semibold rounded-full px-4 py-1.5">🇲🇾 Malaysia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dos columnas: Infraestructura + Maquinaria -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+      <!-- Infraestructura -->
+      <div class="scard">
+        <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">🏗️</span>
+          Infraestructura
+        </h2>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Planta propia de almacenamiento</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Capacidad de acopio: 12.000 toneladas</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Secadora de granos</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Báscula para camiones</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Taller de mantenimiento de maquinaria</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Sistema de monitoreo de stock y calidad</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Flota propia para transporte interno</li>
+        </ul>
+      </div>
+
+      <!-- Maquinaria -->
+      <div class="scard">
+        <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center text-base">⚙️</span>
+          Maquinaria
+        </h2>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Sembradoras de precisión</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Pulverizadoras autopropulsadas</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Cosechadoras con monitoreo de rendimiento</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Equipos de aplicación variable de insumos</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Estaciones meteorológicas propias</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Recursos humanos -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-5 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center text-base">👥</span>
+        Recursos humanos
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+        <div class="flex items-center justify-between p-3 bg-blue-50 rounded-xl border border-blue-100">
+          <p class="text-sm text-gray-600 font-medium">Empleados permanentes</p>
+          <span class="text-2xl font-black text-blue-700">22</span>
+        </div>
+        <div class="flex items-center justify-between p-3 bg-blue-50 rounded-xl border border-blue-100">
+          <p class="text-sm text-gray-600 font-medium">Contratistas por campaña</p>
+          <span class="text-2xl font-black text-blue-700">15</span>
+        </div>
+        <div class="bg-blue-50 rounded-xl border border-blue-100 p-3">
+          <p class="text-xs text-gray-400 font-semibold uppercase tracking-wide mb-2">Equipo técnico</p>
+          <ul class="space-y-1">
+            <li class="text-xs text-gray-600 flex items-center gap-1.5"><svg class="w-3 h-3 text-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>Ingenieros agrónomos</li>
+            <li class="text-xs text-gray-600 flex items-center gap-1.5"><svg class="w-3 h-3 text-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>Especialistas en agricultura de precisión</li>
+            <li class="text-xs text-gray-600 flex items-center gap-1.5"><svg class="w-3 h-3 text-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>Responsable de comercio exterior</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dos columnas: Certificaciones + Logística -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+      <!-- Certificaciones -->
+      <div class="scard">
+        <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">🛡️</span>
+          Certificaciones y estándares
+        </h2>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Trazabilidad completa por lote</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Buenas Prácticas Agrícolas (BPA)</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Protocolos de sustentabilidad y conservación de suelos</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Monitoreo documentado de fertilizantes y fitosanitarios</li>
+        </ul>
+      </div>
+
+      <!-- Logística -->
+      <div class="scard">
+        <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center text-base">🚢</span>
+          Logística de exportación
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-4">
+          La producción es transportada desde Pergamino hacia terminales portuarias del Gran Rosario, donde se realiza el acondicionamiento final y embarque para exportación.
+        </p>
+        <p class="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-2">Corredores logísticos</p>
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 bg-amber-50 border border-amber-100 rounded-xl px-4 py-2.5">
+            <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+            <p class="text-sm text-amber-800 font-medium">Puerto General San Martín</p>
+          </div>
+          <div class="flex items-center gap-2 bg-amber-50 border border-amber-100 rounded-xl px-4 py-2.5">
+            <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+            <p class="text-sm text-amber-800 font-medium">Terminal Puerto Rosario</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicadores operativos -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-5 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">📈</span>
+        Indicadores operativos
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-2xl font-black text-green-700">96%</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Disponibilidad de maquinaria</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-2xl font-black text-green-700">100%</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Lotes con trazabilidad digital</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-2xl font-black text-green-700">🛰️</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Monitoreo satelital de cultivos</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-2xl font-black text-green-700">✅</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Seguro agrícola multirriesgo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sostenibilidad -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">🌱</span>
+        Sostenibilidad
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div class="flex items-start gap-2 text-sm text-gray-600 bg-green-50 rounded-xl px-4 py-2.5 border border-green-100">
+          <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Rotación planificada de cultivos
+        </div>
+        <div class="flex items-start gap-2 text-sm text-gray-600 bg-green-50 rounded-xl px-4 py-2.5 border border-green-100">
+          <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Cultivos de cobertura para conservación de suelos
+        </div>
+        <div class="flex items-start gap-2 text-sm text-gray-600 bg-green-50 rounded-xl px-4 py-2.5 border border-green-100">
+          <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Optimización del consumo de agua e insumos
+        </div>
+        <div class="flex items-start gap-2 text-sm text-gray-600 bg-green-50 rounded-xl px-4 py-2.5 border border-green-100">
+          <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Monitoreo de huella de carbono por campaña
+        </div>
+        <div class="flex items-start gap-2 text-sm text-gray-600 bg-green-50 rounded-xl px-4 py-2.5 border border-green-100 sm:col-span-2">
+          <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Programas de preservación de biodiversidad en áreas no productivas
+        </div>
+      </div>
+    </div>
+
+    <!-- Objetivos estratégicos -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">🎯</span>
+        Objetivos estratégicos
+      </h2>
+      <ol class="space-y-3">
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+          <p class="text-sm text-gray-600">Expandir las exportaciones hacia nuevos mercados de Asia.</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+          <p class="text-sm text-gray-600">Incrementar la capacidad de almacenamiento en origen.</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+          <p class="text-sm text-gray-600">Incorporar más herramientas de inteligencia artificial para monitoreo de cultivos.</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+          <p class="text-sm text-gray-600">Mejorar la eficiencia logística entre campo y puerto.</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">5</span>
+          <p class="text-sm text-gray-600">Profundizar la trazabilidad para satisfacer requisitos de mercados premium.</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Riesgos -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-red-100 flex items-center justify-center text-base">⚠️</span>
+        Riesgos monitoreados
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div class="flex items-center gap-2 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p class="text-sm text-red-700 font-medium">Variaciones climáticas</p>
+        </div>
+        <div class="flex items-center gap-2 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p class="text-sm text-red-700 font-medium">Fluctuaciones de precios internacionales</p>
+        </div>
+        <div class="flex items-center gap-2 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p class="text-sm text-red-700 font-medium">Costos logísticos y de transporte</p>
+        </div>
+        <div class="flex items-center gap-2 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p class="text-sm text-red-700 font-medium">Cambios regulatorios de comercio exterior</p>
+        </div>
+        <div class="flex items-center gap-2 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5 sm:col-span-2">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p class="text-sm text-red-700 font-medium">Riesgos fitosanitarios y de rendimiento</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA inversión -->
+    <div class="bg-green-950 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <p class="text-green-300 text-sm font-semibold mb-1">Proyecto activo · 25% ROI estimado · 12 meses</p>
+        <h3 class="text-2xl font-bold text-white">¿Querés invertir en Establecimiento El Ombú?</h3>
+        <p class="text-white/60 text-sm mt-1">Desde USD 300 · Retorno en dólares</p>
+      </div>
+      <a href="index.html" class="bg-green-400 text-green-950 font-bold rounded-xl px-8 py-3 text-base hover:bg-green-300 transition-colors shadow-lg whitespace-nowrap">
+        Invertir Ahora
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-green-950 text-green-100 mt-12">
+    <div class="container mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <p class="font-bold text-white mb-3">Empresa</p>
+        <ul class="space-y-2 text-sm text-green-300">
+          <li><a href="#" class="hover:text-white transition-colors">Sobre CumpleAgro</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Nuestros Beneficios</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Canales asociados</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-3">Legal</p>
+        <ul class="space-y-2 text-sm text-green-300">
+          <li><a href="#" class="hover:text-white transition-colors">Preguntas frecuentes</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Transparencia</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Términos y condiciones</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Políticas de privacidad</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-3">Accesos</p>
+        <ul class="space-y-2 text-sm text-green-300">
+          <li><a href="index.html" class="hover:text-white transition-colors">Proyectos Disponibles</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Ayuda Inversiones</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Historial</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Contactos</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-3">Contacto</p>
+        <p class="text-sm text-green-300 mb-1">Lunes a viernes de 10 a 18 hs</p>
+        <p class="text-sm text-green-300">+54 11 2390-2002</p>
+      </div>
+    </div>
+    <div class="border-t border-green-800 py-5">
+      <p class="text-center text-xs text-green-400 mb-2">© 2026 CumpleAgro. Todos los derechos reservados.</p>
+      <p class="text-center text-xs text-green-600 max-w-3xl mx-auto px-4 leading-relaxed">
+        LOS PROYECTOS AGROINDUSTRIALES QUE OFRECE CUMPLEAGRO NO SON CONSIDERADOS TÍTULOS NI VALORES NEGOCIABLES. LA RENTABILIDAD INDICADA ES ESTIMADA Y NO GARANTIZADA.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+  function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+  </script>
+</body>
+</html>

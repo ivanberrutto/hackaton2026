@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avícola Las Acacias | CumpleAgro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --green: #2d7d32; }
+    .hero-bg { background: linear-gradient(160deg, #071a09 0%, #14401a 40%, #1e6128 75%, #2d7d32 100%); }
+    .nav-link-d{position:relative;padding-bottom:2px}
+    .nav-link-d::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:2px;background:#90EE90;transition:left .25s,right .25s}
+    .nav-link-d:hover::after{left:0;right:0}
+    .scard{background:white;border-radius:1rem;box-shadow:0 2px 16px rgba(0,0,0,.07);padding:1.5rem}
+  </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+  <!-- MENÚ MÓVIL -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-green-950 flex flex-col p-6 pt-6 overflow-y-auto">
+    <div class="flex justify-between items-center mb-8">
+      <a href="home.html" class="flex items-center gap-2">
+        <img src="logo-cumpleagro.png" alt="CumpleAgro" class="w-9 h-9 rounded-full">
+        <span class="font-bold text-lg text-white">AGrow</span>
+      </a>
+      <button onclick="toggleMenu()" class="text-white/70 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <a href="index.html" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Proyectos Disponibles</a>
+    <a href="ayudaInversiones.html" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Ayuda Inversiones</a>
+    <a href="#" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Historial</a>
+    <div class="mt-8 flex flex-col gap-3">
+      <a href="#" class="bg-green-400 text-green-950 rounded-xl px-4 py-3 text-center font-semibold">Ver mis Inversiones</a>
+      <a href="#" class="border border-green-400 text-green-200 rounded-xl px-4 py-3 text-center font-medium flex items-center justify-center gap-2">
+        Bienvenido Valentino
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="fixed top-0 inset-x-0 z-40 bg-green-950 shadow-lg">
+    <div class="flex items-center justify-between px-4 lg:px-10 xl:px-20 h-14 border-b border-green-800/60">
+      <a href="home.html" class="flex items-center gap-2.5">
+        <img src="logo-cumpleagro.png" alt="CumpleAgro" class="w-9 h-9 rounded-full">
+        <div class="hidden sm:block">
+          <p class="font-bold text-white leading-none text-base">AGrow</p>
+          <p class="text-green-400 text-[10px] leading-none mt-0.5 font-medium tracking-wide">INVERTÍ EN EL CAMPO</p>
+        </div>
+      </a>
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="#" class="bg-green-400 text-green-950 rounded-lg px-4 py-1.5 text-sm font-bold hover:bg-green-300 transition-colors shadow">Ver mis Inversiones</a>
+        <div class="relative group">
+          <button class="border border-green-500 text-green-200 rounded-lg px-4 py-1.5 text-sm font-medium hover:bg-green-800 transition-colors flex items-center gap-1.5">
+            Bienvenido Valentino
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 transition-transform group-hover:rotate-180"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg>
+          </button>
+          <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-white rounded-xl shadow-xl p-2 min-w-[200px] border border-green-100 z-50">
+            <div class="px-3 py-2 border-b border-gray-100 mb-1">
+              <p class="text-xs text-gray-400">Cuenta activa</p>
+              <p class="text-sm font-semibold text-green-800">Valentino García</p>
+            </div>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Mi perfil</a>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Mis inversiones</a>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Documentos</a>
+            <a href="#" class="block px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg border-t border-gray-100 mt-1">Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+      <button onclick="toggleMenu()" class="flex lg:hidden text-green-300 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="hidden lg:flex justify-center items-center gap-10 h-10 bg-green-900/50">
+      <a href="index.html" class="nav-link-d text-green-200 hover:text-white text-sm font-medium transition-colors">Proyectos Disponibles</a>
+      <a href="ayudaInversiones.html" class="nav-link-d text-green-200 hover:text-white text-sm font-medium transition-colors">Ayuda Inversiones</a>
+      <a href="#" class="nav-link-d text-green-200 hover:text-white text-sm font-medium transition-colors">Historial</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="pt-24 relative overflow-hidden h-72 sm:h-96">
+    <img src="imagenes agros/pollo1.jpg" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-green-950 via-green-950/60 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-green-950/40 to-transparent"></div>
+    <div class="relative z-10 h-full container mx-auto px-4 flex flex-col justify-end pb-8">
+      <!-- breadcrumb -->
+      <div class="flex items-center gap-2 mb-3">
+        <a href="index.html" class="text-green-300 hover:text-green-200 text-sm flex items-center gap-1 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          Proyectos
+        </a>
+        <span class="text-white/30 text-sm">/</span>
+        <span class="text-white/60 text-sm">Avícola Las Acacias</span>
+      </div>
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="bg-amber-700/80 backdrop-blur-sm text-white text-xs font-semibold rounded-full px-3 py-1">Ganadería</span>
+            <span class="bg-amber-500 text-white text-xs font-semibold rounded-full px-3 py-1">🔥 Activo</span>
+            <span class="bg-black/30 backdrop-blur-sm text-white/90 text-xs font-bold rounded-full px-3 py-1">Pollo</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Avícola Las Acacias</h1>
+          <p class="text-green-300 mt-1 text-sm flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Crespo, Entre Ríos
+          </p>
+        </div>
+        <a href="index.html" class="bg-green-400 text-green-950 font-bold rounded-xl px-6 py-2.5 text-sm hover:bg-green-300 transition-colors shadow-lg whitespace-nowrap">
+          Invertir Ahora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FICHA RÁPIDA -->
+  <section class="bg-white border-b border-gray-100 shadow-sm">
+    <div class="container mx-auto px-4 py-5">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 divide-x divide-gray-100">
+        <div class="text-center px-4">
+          <p class="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-1">Actividad</p>
+          <p class="font-bold text-green-800 text-sm">Producción avícola</p>
+        </div>
+        <div class="text-center px-4">
+          <p class="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-1">Fundación</p>
+          <p class="font-bold text-green-800 text-sm">2008</p>
+        </div>
+        <div class="text-center px-4">
+          <p class="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-1">Representante</p>
+          <p class="font-bold text-green-800 text-sm">Martín Acosta</p>
+        </div>
+        <div class="text-center px-4">
+          <p class="text-xs text-gray-400 uppercase tracking-wide font-semibold mb-1">Tipo</p>
+          <p class="font-bold text-green-800 text-sm">Integrada con frigorífico</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="container mx-auto px-4 py-10 space-y-8 max-w-5xl">
+
+    <!-- Descripción -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">📋</span>
+        Descripción
+      </h2>
+      <p class="text-gray-600 leading-relaxed mb-3">
+        Avícola Las Acacias es una empresa familiar dedicada a la producción de pollo parrillero en el departamento de Paraná, provincia de Entre Ríos. Opera bajo un esquema de integración productiva, realizando la crianza y engorde de aves destinadas al mercado interno.
+      </p>
+      <p class="text-gray-600 leading-relaxed">
+        La empresa ha invertido en la modernización de sus instalaciones durante los últimos años, incorporando sistemas automatizados de alimentación, ventilación y monitoreo ambiental.
+      </p>
+    </div>
+
+    <!-- Escala productiva -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-5 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">📊</span>
+        Escala productiva
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-3xl font-black text-green-700">8</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Galpones de engorde</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-3xl font-black text-green-700">240k</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Aves simultáneas</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-3xl font-black text-green-700">6</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Ciclos por año</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-3xl font-black text-green-700">1,4M</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Pollos / año</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-3xl font-black text-green-700">65</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Hectáreas totales</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+          <p class="text-3xl font-black text-green-700">18</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Ha producción avícola</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicadores operativos -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-5 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center text-base">📈</span>
+        Indicadores operativos
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-amber-50 rounded-xl p-4 text-center border border-amber-100">
+          <p class="text-2xl font-black text-amber-700">3,2%</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Mortalidad promedio</p>
+        </div>
+        <div class="bg-amber-50 rounded-xl p-4 text-center border border-amber-100">
+          <p class="text-2xl font-black text-amber-700">1,78</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Conversión alimenticia</p>
+        </div>
+        <div class="bg-amber-50 rounded-xl p-4 text-center border border-amber-100">
+          <p class="text-2xl font-black text-amber-700">2,8 kg</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Peso promedio faena</p>
+        </div>
+        <div class="bg-amber-50 rounded-xl p-4 text-center border border-amber-100">
+          <p class="text-2xl font-black text-amber-700">98%</p>
+          <p class="text-xs text-gray-500 mt-1 font-medium">Disponibilidad operativa</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dos columnas: Infraestructura + RRHH -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+      <!-- Infraestructura -->
+      <div class="scard">
+        <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">🏗️</span>
+          Infraestructura
+        </h2>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Galpones climatizados</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Comederos automáticos</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Bebederos de línea</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Grupo electrógeno de respaldo</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Silos para alimento balanceado</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Sistema de monitoreo remoto (T° y HR)</li>
+          <li class="flex items-start gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Reservorio de agua propio</li>
+        </ul>
+      </div>
+
+      <!-- Recursos humanos -->
+      <div class="scard">
+        <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center text-base">👥</span>
+          Recursos humanos
+        </h2>
+        <div class="space-y-3 mb-5">
+          <div class="flex items-center justify-between p-3 bg-blue-50 rounded-xl border border-blue-100">
+            <p class="text-sm text-gray-600 font-medium">Empleados permanentes</p>
+            <span class="text-2xl font-black text-blue-700">18</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-blue-50 rounded-xl border border-blue-100">
+            <p class="text-sm text-gray-600 font-medium">Empleados temporarios</p>
+            <span class="text-2xl font-black text-blue-700">6</span>
+          </div>
+        </div>
+        <div class="flex items-start gap-2 text-sm text-gray-500 bg-gray-50 rounded-xl p-3">
+          <svg class="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Equipo técnico veterinario externo de apoyo permanente.
+        </div>
+      </div>
+    </div>
+
+    <!-- Dos columnas: Certificaciones + Tecnología -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+      <!-- Certificaciones -->
+      <div class="scard">
+        <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">🛡️</span>
+          Certificaciones y buenas prácticas
+        </h2>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Protocolos de bioseguridad implementados
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Registro sanitario actualizado
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Programa de bienestar animal
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Trazabilidad documentada de lotes
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tecnología -->
+      <div class="scard">
+        <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-purple-100 flex items-center justify-center text-base">💡</span>
+          Tecnología utilizada
+        </h2>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Sensores IoT para monitoreo ambiental
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Plataforma de gestión productiva
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Alertas automáticas por desvíos de temperatura
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Registro digital de lotes y ciclos
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Dos columnas: Proveedores + Destino producción -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+      <!-- Proveedores -->
+      <div class="scard">
+        <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center text-base">🤝</span>
+          Proveedores principales
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold rounded-full px-3 py-1.5">Alimento balanceado</span>
+          <span class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold rounded-full px-3 py-1.5">Servicios veterinarios</span>
+          <span class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold rounded-full px-3 py-1.5">Equipamiento avícola</span>
+          <span class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold rounded-full px-3 py-1.5">Energía eléctrica</span>
+          <span class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold rounded-full px-3 py-1.5">Combustible de respaldo</span>
+        </div>
+      </div>
+
+      <!-- Destino -->
+      <div class="scard">
+        <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">🚚</span>
+          Destino de la producción
+        </h2>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+            Mercado interno
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+            Frigoríficos integradores de la región centro
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+            Cadenas de supermercados y distribuidores mayoristas
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Objetivos estratégicos -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center text-base">🎯</span>
+        Objetivos estratégicos
+      </h2>
+      <ol class="space-y-3">
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+          <p class="text-sm text-gray-600">Incrementar la capacidad de producción en un <strong class="text-green-800">20%</strong> durante los próximos tres años.</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+          <p class="text-sm text-gray-600">Reducir el consumo energético por ave producida.</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+          <p class="text-sm text-gray-600">Incorporar generación solar para autoconsumo.</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+          <p class="text-sm text-gray-600">Mejorar la digitalización de procesos de monitoreo y trazabilidad.</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Riesgos -->
+    <div class="scard">
+      <h2 class="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-red-100 flex items-center justify-center text-base">⚠️</span>
+        Riesgos productivos monitoreados
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div class="flex items-center gap-2 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p class="text-sm text-red-700 font-medium">Enfermedades aviares</p>
+        </div>
+        <div class="flex items-center gap-2 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p class="text-sm text-red-700 font-medium">Incremento en costos de alimentación</p>
+        </div>
+        <div class="flex items-center gap-2 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p class="text-sm text-red-700 font-medium">Eventos climáticos extremos</p>
+        </div>
+        <div class="flex items-center gap-2 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p class="text-sm text-red-700 font-medium">Interrupciones energéticas</p>
+        </div>
+        <div class="flex items-center gap-2 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5 sm:col-span-2">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p class="text-sm text-red-700 font-medium">Variaciones en la demanda del mercado</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA inversión -->
+    <div class="bg-green-950 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <p class="text-green-300 text-sm font-semibold mb-1">Proyecto activo · 23% ROI estimado · 14 meses</p>
+        <h3 class="text-2xl font-bold text-white">¿Querés invertir en Avícola Las Acacias?</h3>
+        <p class="text-white/60 text-sm mt-1">Desde USD 500 · Retorno en dólares</p>
+      </div>
+      <a href="index.html" class="bg-green-400 text-green-950 font-bold rounded-xl px-8 py-3 text-base hover:bg-green-300 transition-colors shadow-lg whitespace-nowrap">
+        Invertir Ahora
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-green-950 text-green-100 mt-12">
+    <div class="container mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <p class="font-bold text-white mb-3">Empresa</p>
+        <ul class="space-y-2 text-sm text-green-300">
+          <li><a href="#" class="hover:text-white transition-colors">Sobre CumpleAgro</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Nuestros Beneficios</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Canales asociados</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-3">Legal</p>
+        <ul class="space-y-2 text-sm text-green-300">
+          <li><a href="#" class="hover:text-white transition-colors">Preguntas frecuentes</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Transparencia</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Términos y condiciones</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Políticas de privacidad</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-3">Accesos</p>
+        <ul class="space-y-2 text-sm text-green-300">
+          <li><a href="index.html" class="hover:text-white transition-colors">Proyectos Disponibles</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Ayuda Inversiones</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Historial</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Contactos</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-3">Contacto</p>
+        <p class="text-sm text-green-300 mb-1">Lunes a viernes de 10 a 18 hs</p>
+        <p class="text-sm text-green-300">+54 11 2390-2002</p>
+      </div>
+    </div>
+    <div class="border-t border-green-800 py-5">
+      <p class="text-center text-xs text-green-400 mb-2">© 2026 CumpleAgro. Todos los derechos reservados.</p>
+      <p class="text-center text-xs text-green-600 max-w-3xl mx-auto px-4 leading-relaxed">
+        LOS PROYECTOS AGROINDUSTRIALES QUE OFRECE CUMPLEAGRO NO SON CONSIDERADOS TÍTULOS NI VALORES NEGOCIABLES. LA RENTABILIDAD INDICADA ES ESTIMADA Y NO GARANTIZADA.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+  function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+  </script>
+</body>
+</html>

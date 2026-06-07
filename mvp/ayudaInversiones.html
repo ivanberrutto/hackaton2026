@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayuda Inversiones | CumpleAgro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .nav-link-d{position:relative;padding-bottom:2px}
+    .nav-link-d::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:2px;background:#90EE90;transition:left .25s,right .25s}
+    .nav-link-d:hover::after{left:0;right:0}
+    .nav-link-d.active-nav::after{left:0;right:0}
+
+    /* Typing indicator */
+    @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+    .dot-bounce{display:inline-block;width:7px;height:7px;border-radius:50%;background:#9ca3af;animation:bounce 1.2s ease-in-out infinite}
+    .dot-bounce:nth-child(2){animation-delay:.15s}
+    .dot-bounce:nth-child(3){animation-delay:.3s}
+
+    /* Message animation */
+    @keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .msg-in{animation:msgIn .3s ease-out forwards}
+
+    /* Quick chip */
+    .chip{cursor:pointer;transition:all .15s}
+    .chip:hover{transform:translateY(-1px)}
+    .chip:active{transform:scale(.97)}
+
+    /* Progress bar */
+    .prog-hot{background:linear-gradient(to left,#ef4444,#f97316)}
+    .prog-new{background:linear-gradient(to left,#3b82f6,#06b6d4)}
+
+    /* Scrollbar */
+    #chat-messages::-webkit-scrollbar{width:4px}
+    #chat-messages::-webkit-scrollbar-track{background:transparent}
+    #chat-messages::-webkit-scrollbar-thumb{background:#d1fae5;border-radius:2px}
+  </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 flex flex-col h-screen overflow-hidden">
+
+  <!-- MENÚ MÓVIL -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-green-950 flex flex-col p-6 pt-6 overflow-y-auto">
+    <div class="flex justify-between items-center mb-8">
+      <a href="home.html" class="flex items-center gap-2">
+        <img src="logo-cumpleagro.png" alt="CumpleAgro" class="w-9 h-9 rounded-full">
+        <span class="font-bold text-lg text-white">CumpleAgro</span>
+      </a>
+      <button onclick="toggleMenu()" class="text-white/70 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <a href="index.html" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Proyectos Disponibles</a>
+    <a href="ayudaInversiones.html" onclick="toggleMenu()" class="text-white font-semibold py-4 border-b border-green-800 text-base">Ayuda Inversiones</a>
+    <a href="#" onclick="toggleMenu()" class="text-green-100 font-medium py-4 border-b border-green-800 text-base">Historial</a>
+    <div class="mt-8 flex flex-col gap-3">
+      <a href="#" class="bg-green-400 text-green-950 rounded-xl px-4 py-3 text-center font-semibold">Ver mis Inversiones</a>
+      <a href="#" class="border border-green-400 text-green-200 rounded-xl px-4 py-3 text-center font-medium flex items-center justify-center gap-2">
+        Bienvenido Valentino
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══ HEADER (idéntico al de index) ═══ -->
+  <header class="flex-shrink-0 bg-green-950 shadow-lg z-40">
+    <div class="flex items-center justify-between px-4 lg:px-10 xl:px-20 h-14 border-b border-green-800/60">
+      <a href="home.html" class="flex items-center gap-2.5">
+        <img src="logo-cumpleagro.png" alt="CumpleAgro" class="w-9 h-9 rounded-full">
+        <div class="hidden sm:block">
+          <p class="font-bold text-white leading-none text-base">CumpleAgro</p>
+          <p class="text-green-400 text-[10px] leading-none mt-0.5 font-medium tracking-wide">INVERTÍ EN EL CAMPO</p>
+        </div>
+      </a>
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="#" class="bg-green-400 text-green-950 rounded-lg px-4 py-1.5 text-sm font-bold hover:bg-green-300 transition-colors shadow">Ver mis Inversiones</a>
+        <div class="relative group">
+          <button class="border border-green-500 text-green-200 rounded-lg px-4 py-1.5 text-sm font-medium hover:bg-green-800 transition-colors flex items-center gap-1.5">
+            Bienvenido Valentino
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 transition-transform group-hover:rotate-180"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg>
+          </button>
+          <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-white rounded-xl shadow-xl p-2 min-w-[200px] border border-green-100 z-50">
+            <div class="px-3 py-2 border-b border-gray-100 mb-1">
+              <p class="text-xs text-gray-400">Cuenta activa</p>
+              <p class="text-sm font-semibold text-green-800">Valentino García</p>
+            </div>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Mi perfil</a>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Mis inversiones</a>
+            <a href="#" class="block px-3 py-2 text-sm text-green-800 hover:bg-green-50 rounded-lg">Documentos</a>
+            <a href="#" class="block px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg border-t border-gray-100 mt-1">Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+      <button onclick="toggleMenu()" class="flex lg:hidden text-green-300 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="hidden lg:flex justify-center items-center gap-10 h-10 bg-green-900/50">
+      <a href="index.html" class="nav-link-d text-green-300 hover:text-white text-sm font-medium transition-colors">Proyectos Disponibles</a>
+      <a href="ayudaInversiones.html" class="nav-link-d active-nav text-white text-sm font-semibold transition-colors">Ayuda Inversiones</a>
+      <a href="#" class="nav-link-d text-green-300 hover:text-white text-sm font-medium transition-colors">Historial</a>
+    </div>
+  </header>
+
+  <!-- ═══ CHAT WRAPPER ═══ -->
+  <div class="flex-1 flex overflow-hidden bg-gray-100">
+
+    <!-- Sidebar info (desktop) -->
+    <aside class="hidden lg:flex flex-col w-64 xl:w-72 bg-green-950 text-white flex-shrink-0 p-6 gap-6">
+      <!-- Bot identity -->
+      <div class="flex flex-col items-center text-center pt-4">
+        <div class="w-16 h-16 rounded-2xl bg-green-700 flex items-center justify-center shadow-lg mb-3">
+          <svg width="36" height="36" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="19" fill="#2d7d32"/><path d="M19 7 C13 13 9.5 19 13 25 C15 21 17 18.5 19 17.5 C21 18.5 23 21 25 25 C28.5 19 25 13 19 7Z" fill="#90EE90"/><line x1="19" y1="17" x2="19" y2="31" stroke="#90EE90" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
+        <p class="font-bold text-lg">AgriBot</p>
+        <p class="text-green-400 text-xs mt-1">Asesor de Inversiones IA</p>
+        <span class="mt-2 inline-flex items-center gap-1.5 text-xs text-green-300">
+          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+          En línea ahora
+        </span>
+      </div>
+      <div class="border-t border-green-800 pt-5 space-y-4">
+        <p class="text-green-400 text-xs font-semibold uppercase tracking-wider">Qué puedo hacer</p>
+        <div class="flex items-start gap-3">
+          <span class="text-lg mt-0.5">🎯</span>
+          <p class="text-green-200 text-sm leading-snug">Recomendarte el proyecto ideal según tu perfil</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-lg mt-0.5">📊</span>
+          <p class="text-green-200 text-sm leading-snug">Comparar rentabilidades y plazos disponibles</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-lg mt-0.5">💬</span>
+          <p class="text-green-200 text-sm leading-snug">Responder tus dudas sobre cómo invertir</p>
+        </div>
+      </div>
+      <div class="mt-auto border-t border-green-800 pt-4">
+        <button onclick="resetChat()" class="w-full text-green-400 hover:text-white text-sm flex items-center gap-2 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          Reiniciar conversación
+        </button>
+      </div>
+    </aside>
+
+    <!-- Chat area -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+
+      <!-- Messages scroll area -->
+      <div id="chat-messages" class="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+        <!-- Messages injected here by JS -->
+      </div>
+
+      <!-- Input bar -->
+      <div class="flex-shrink-0 bg-white border-t border-gray-200 px-4 py-3">
+        <form id="chat-form" onsubmit="handleUserInput(event)" class="flex items-center gap-3 max-w-3xl mx-auto">
+          <input
+            id="chat-input"
+            type="text"
+            placeholder="Escribí tu mensaje..."
+            autocomplete="off"
+            class="flex-1 bg-gray-100 rounded-xl px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition-all"
+          >
+          <button type="submit" class="w-10 h-10 rounded-xl bg-green-700 hover:bg-green-800 text-white flex items-center justify-center flex-shrink-0 transition-colors shadow">
+            <svg class="w-4 h-4 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </button>
+        </form>
+        <p class="text-center text-xs text-gray-400 mt-2">AgriBot es una demo estática · Las sugerencias no constituyen asesoramiento financiero</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  // ─── Estado del chat ───────────────────────────────────────────────
+  // Estados: 'greeting' → 'timeframe' → 'amount' → 'done'
+  let state = 'greeting';
+  let selectedTimeframe = '';
+  let selectedAmount = '';
+
+  // ─── Datos de proyectos para recomendar ───────────────────────────
+  const recommendations = {
+    '6 meses':         { title:'Maíz Córdoba Norte',      location:'Córdoba, Zona Núcleo',  type:'agricultura',     roi:'25%', months:12, funded:67,  minInv:'USD 300',   progressClass:'prog-new', badge:'🌾', status:'activo'  },
+    '1 año':           { title:'Soja Premium Chaco',       location:'Chaco Norte',           type:'agricultura',     roi:'21%', months:18, funded:94,  minInv:'USD 500',   progressClass:'prog-hot', badge:'🌱', status:'activo'  },
+    '2 años':          { title:'Aceite de Oliva Mendoza',  location:'Mendoza, Cuyo',         type:'agroindustria',   roi:'28%', months:20, funded:52,  minInv:'USD 1.000', progressClass:'prog-new', badge:'🏭', status:'activo'  },
+    'Más de 2 años':   { title:'Viñedo Valle de Uco',      location:'Mendoza, Valle de Uco', type:'vitivinicultura', roi:'30%', months:24, funded:22,  minInv:'USD 1.000', progressClass:'prog-new', badge:'🍇', status:'nuevo'   },
+  };
+
+  const typeLabel = { agricultura:'Agricultura', ganaderia:'Ganadería', vitivinicultura:'Vitivinicultura', agroindustria:'Agroindustria' };
+  const typeColor = { agricultura:'bg-green-100 text-green-800', ganaderia:'bg-amber-100 text-amber-800', vitivinicultura:'bg-purple-100 text-purple-800', agroindustria:'bg-slate-100 text-slate-700' };
+
+  // ─── Helpers de render ────────────────────────────────────────────
+  const ICON_BOT = `<img src="logo-cumpleagro.png" alt="AgriBot" class="w-8 h-8 rounded-full flex-shrink-0 shadow">`;
+
+  function scrollToBottom() {
+    const el = document.getElementById('chat-messages');
+    el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+  }
+
+  function addUserBubble(text) {
+    const el = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = 'flex justify-end msg-in';
+    div.innerHTML = `
+      <div class="max-w-xs sm:max-w-md lg:max-w-lg">
+        <div class="bg-green-700 text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm leading-relaxed shadow-sm">${escHtml(text)}</div>
+      </div>`;
+    el.appendChild(div);
+    scrollToBottom();
+  }
+
+  function addBotBubble(html, extraClass = '') {
+    const el = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = `flex items-end gap-2.5 msg-in ${extraClass}`;
+    div.innerHTML = `
+      ${ICON_BOT}
+      <div class="max-w-xs sm:max-w-md lg:max-w-lg">
+        <div class="bg-white text-gray-800 rounded-2xl rounded-bl-sm px-4 py-2.5 text-sm leading-relaxed shadow-sm border border-gray-100">${html}</div>
+      </div>`;
+    el.appendChild(div);
+    scrollToBottom();
+    return div;
+  }
+
+  function addTypingIndicator() {
+    return addBotBubble(`
+      <span class="dot-bounce"></span>
+      <span class="dot-bounce"></span>
+      <span class="dot-bounce"></span>
+    `, 'typing-row');
+  }
+
+  function removeTyping() {
+    const t = document.querySelector('.typing-row');
+    if (t) t.remove();
+  }
+
+  function addChips(options, onSelect) {
+    const el = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.id = 'chips-row';
+    div.className = 'flex flex-wrap gap-2 pl-11 msg-in';
+    div.innerHTML = options.map(opt =>
+      `<button class="chip bg-white border-2 border-green-700 text-green-800 text-sm font-semibold rounded-full px-4 py-1.5 hover:bg-green-700 hover:text-white shadow-sm" onclick="selectChip(this,'${escAttr(opt)}')">${escHtml(opt)}</button>`
+    ).join('');
+    el.appendChild(div);
+    scrollToBottom();
+    window._chipCallback = onSelect;
+  }
+
+  function removeChips() {
+    const c = document.getElementById('chips-row');
+    if (c) c.remove();
+    window._chipCallback = null;
+  }
+
+  function botSay(html, delay = 0) {
+    return new Promise(resolve => setTimeout(() => {
+      addBotBubble(html);
+      resolve();
+    }, delay));
+  }
+
+  function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function escAttr(s) { return s.replace(/'/g, "\\'"); }
+
+  // ─── Secuencia de greeting ────────────────────────────────────────
+  async function startGreeting() {
+    state = 'greeting';
+    const typing1 = addTypingIndicator();
+    await delay(900);
+    typing1.remove();
+    await botSay(`¡Hola, <strong>Valentino</strong>! 👋 Soy <strong>AgriBot</strong>, el asesor de inversiones de CumpleAgro.`);
+
+    const typing2 = addTypingIndicator();
+    await delay(1100);
+    typing2.remove();
+    await botSay(`Estoy aquí para ayudarte a encontrar el proyecto agro <strong>ideal para tu perfil</strong>. Te haré dos preguntas rápidas y te recomendaré la mejor opción disponible ahora mismo. ¿Empezamos?`);
+
+    addChips(['¡Sí, vamos! 🌾', 'Contame más primero'], () => advanceToTimeframe());
+  }
+
+  // ─── Paso 1: Plazo ────────────────────────────────────────────────
+  async function advanceToTimeframe() {
+    removeChips();
+    state = 'timeframe';
+
+    const typing = addTypingIndicator();
+    await delay(900);
+    typing.remove();
+
+    await botSay(`Perfecto. Primera pregunta:`);
+
+    const typing2 = addTypingIndicator();
+    await delay(700);
+    typing2.remove();
+
+    await botSay(`📅 <strong>¿En cuánto tiempo querés ver el retorno de tu inversión?</strong>`);
+
+    addChips(['6 meses', '1 año', '2 años', 'Más de 2 años'], (val) => {
+      selectedTimeframe = val;
+      addUserBubble(val);
+      advanceToAmount();
+    });
+  }
+
+  // ─── Paso 2: Monto ────────────────────────────────────────────────
+  async function advanceToAmount() {
+    removeChips();
+    state = 'amount';
+
+    const timeframeComment = {
+      '6 meses':       'Un horizonte corto es ideal para proyectos agrícolas de ciclo rápido. ¡Muy buen perfil!',
+      '1 año':         'Un año es un plazo muy dinámico en el agro argentino. Hay excelentes opciones.',
+      '2 años':        'Con 2 años de plazo podés acceder a proyectos de mayor rentabilidad acumulada.',
+      'Más de 2 años': 'Un horizonte largo te abre la puerta a los proyectos de mayor retorno del catálogo.',
+    };
+
+    const typing = addTypingIndicator();
+    await delay(1000);
+    typing.remove();
+
+    await botSay(`${timeframeComment[selectedTimeframe] || 'Excelente elección.'} 📊`);
+
+    const typing2 = addTypingIndicator();
+    await delay(800);
+    typing2.remove();
+
+    await botSay(`💰 Segunda pregunta: <strong>¿cuánto capital tenés disponible para invertir?</strong>`);
+
+    addChips(['USD 300 – 500', 'USD 500 – 1.000', 'USD 1.000 – 5.000', 'Más de USD 5.000'], (val) => {
+      selectedAmount = val;
+      addUserBubble(val);
+      advanceToRecommendation();
+    });
+  }
+
+  // ─── Paso 3: Recomendación ────────────────────────────────────────
+  async function advanceToRecommendation() {
+    removeChips();
+    state = 'done';
+
+    const typing = addTypingIndicator();
+    await delay(800);
+    typing.remove();
+
+    await botSay(`Entendido. Estoy analizando los proyectos disponibles que mejor se adaptan a tu perfil...`);
+
+    const typing2 = addTypingIndicator();
+    await delay(2400);
+    typing2.remove();
+
+    await botSay(`🎯 <strong>¡Encontré tu match perfecto!</strong>`);
+
+    // Elegir proyecto según plazo
+    const proj = recommendations[selectedTimeframe] || recommendations['1 año'];
+
+    // Armar card de recomendación
+    const statusBadge = proj.status === 'activo'
+      ? `<span class="bg-amber-500 text-white text-[10px] font-bold rounded-full px-2 py-0.5">🔥 Activo</span>`
+      : `<span class="bg-blue-500 text-white text-[10px] font-bold rounded-full px-2 py-0.5">✨ Nuevo</span>`;
+    const catBadge = `<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full ${typeColor[proj.type] || 'bg-gray-100 text-gray-700'}">${typeLabel[proj.type] || proj.type}</span>`;
+
+    const cardHtml = `
+      <div class="mt-2 rounded-xl border border-green-200 bg-green-50 overflow-hidden shadow">
+        <!-- Header card -->
+        <div class="bg-green-700 px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">${proj.badge}</span>
+            <div>
+              <p class="font-bold text-white text-sm leading-tight">${proj.title}</p>
+              <p class="text-green-200 text-xs">📍 ${proj.location}</p>
+            </div>
+          </div>
+          <div class="flex flex-col items-end gap-1">
+            ${statusBadge}
+            ${catBadge}
+          </div>
+        </div>
+        <!-- Stats -->
+        <div class="px-4 py-3">
+          <div class="flex items-baseline gap-2 mb-2">
+            <span class="text-3xl font-black text-green-700">${proj.roi}</span>
+            <div>
+              <p class="text-xs font-semibold text-gray-700">Rentabilidad estimada total</p>
+              <p class="text-xs text-gray-500">Dólares · ${proj.months} meses</p>
+            </div>
+          </div>
+          <!-- Progress -->
+          <div class="mb-3">
+            <div class="relative h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="absolute inset-y-0 left-0 ${proj.progressClass} rounded-full" style="width:${proj.funded}%"></div>
+            </div>
+            <p class="text-right text-xs text-gray-400 mt-0.5">${proj.funded}% fondeado</p>
+          </div>
+          <!-- Min inv -->
+          <div class="flex items-center justify-between bg-white rounded-lg px-3 py-2 border border-green-100">
+            <span class="text-xs text-gray-500">Inversión mínima</span>
+            <span class="font-bold text-green-700 text-sm">Desde ${proj.minInv}</span>
+          </div>
+        </div>
+        <!-- CTAs -->
+        <div class="flex gap-2 px-4 pb-4">
+          <a href="index.html" class="flex-1 text-center py-2 rounded-lg border-2 border-green-700 text-green-700 text-xs font-bold hover:bg-green-700 hover:text-white transition-colors">Ver proyecto →</a>
+          <button class="flex-1 py-2 rounded-lg bg-green-700 text-white text-xs font-bold hover:bg-green-800 transition-colors shadow">Invertir ahora 🚀</button>
+        </div>
+      </div>`;
+
+    addBotBubble(cardHtml);
+
+    const typing3 = addTypingIndicator();
+    await delay(1200);
+    typing3.remove();
+
+    const amountNote = selectedAmount !== 'USD 300 – 500'
+      ? `Con ${selectedAmount} podés tomar <strong>múltiples posiciones</strong> en este proyecto.`
+      : 'El monto mínimo de este proyecto encaja perfecto con tu capital disponible.';
+
+    await botSay(`${amountNote} La rentabilidad estimada es del <strong>${proj.roi}</strong> en ${proj.months} meses. ¿Qué querés hacer?`);
+
+    addChips(['Ver todos los proyectos', 'Hacer otra consulta'], (val) => {
+      addUserBubble(val);
+      if (val === 'Ver todos los proyectos') {
+        window.location.href = 'index.html';
+      } else {
+        resetChat();
+      }
+    });
+  }
+
+  // ─── selectChip (llamado por botones inline) ──────────────────────
+  function selectChip(btn, value) {
+    if (window._chipCallback) {
+      window._chipCallback(value);
+    }
+  }
+
+  // ─── Input libre del usuario ──────────────────────────────────────
+  function handleUserInput(e) {
+    e.preventDefault();
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+
+    if (state === 'greeting') {
+      addUserBubble(text);
+      removeChips();
+      advanceToTimeframe();
+    } else if (state === 'timeframe') {
+      addUserBubble(text);
+      selectedTimeframe = text;
+      removeChips();
+      advanceToAmount();
+    } else if (state === 'amount') {
+      addUserBubble(text);
+      selectedAmount = text;
+      removeChips();
+      advanceToRecommendation();
+    } else if (state === 'done') {
+      addUserBubble(text);
+      removeChips();
+      const typing = addTypingIndicator();
+      delay(900).then(() => {
+        typing.remove();
+        addBotBubble(`Gracias por tu mensaje. Para una nueva consulta personalizada, podés <button onclick="resetChat()" class="text-green-600 font-semibold underline">reiniciar la conversación</button> o <a href="index.html" class="text-green-600 font-semibold underline">ver todos los proyectos disponibles</a>.`);
+      });
+    }
+  }
+
+  // ─── Reset ────────────────────────────────────────────────────────
+  function resetChat() {
+    document.getElementById('chat-messages').innerHTML = '';
+    removeChips();
+    state = 'greeting';
+    selectedTimeframe = '';
+    selectedAmount = '';
+    startGreeting();
+  }
+
+  // ─── Utils ────────────────────────────────────────────────────────
+  function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+  // ─── Init ─────────────────────────────────────────────────────────
+  startGreeting();
+  </script>
+</body>
+</html>
